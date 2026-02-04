@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GearshiftPL:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GearshiftPL_jar</output-path>
+    <root id="archive" name="GearshiftPL.jar">
+      <element id="module-output" name="GearshiftPL" />
+    </root>
+  </artifact>
+</component>

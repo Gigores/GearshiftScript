@@ -1,0 +1,86 @@
+#################################
+# Simple banking system demo    #
+#################################
+
+# ---------- Account structure ----------
+
+struct Account is
+    let owner
+    let balance = 0
+
+    function __init(owner, initial=0) is
+        this.owner = owner
+        this.balance = initial
+    end
+
+    function deposit(amount) is
+        this.balance += amount
+    end
+
+    function withdraw(amount) is
+        if amount > this.balance then
+            println("Not enough funds for", this.owner)
+            return false
+        end
+        this.balance -= amount
+        return true
+    end
+end
+
+
+# ---------- Bank structure ----------
+
+struct Bank is
+    let accounts = {}
+
+    function addAccount(account) is
+        this.accounts[account.owner] = account
+    end
+
+    function get(name) is
+        this.accounts[name]
+    end
+
+    function printAll() is
+        for key in this.accounts.keyList() do
+            let acc = this.accounts[key]
+            println(acc.owner, "=>", acc.balance)
+        end
+    end
+end
+
+
+# ---------- Utility function ----------
+
+function transfer(from, to, amount) is
+    if from.withdraw(amount) then
+        to.deposit(amount)
+        println("Transferred", amount)
+    end
+end
+
+
+# ---------- Main program ----------
+
+let bank = new Bank
+
+let alice = new Account("Alice", 100)
+let bob   = new Account("Bob", 40)
+
+bank.addAccount(alice)
+bank.addAccount(bob)
+
+println("Initial state:")
+bank.printAll()
+println("")
+
+# simulate several operations
+for i in 1..3 do
+    println("Transfer step", i)
+    transfer(alice, bob, 15)
+    bank.printAll()
+    println("")
+end
+
+println("Final balances:")
+bank.printAll()
