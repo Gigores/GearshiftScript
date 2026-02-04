@@ -4,7 +4,7 @@ This language supports several OOP (Composition, basic Encapsulation, constructo
 
 This language wasn't made to be a production language.
 # Installation
-You can download [the latest release](https://github.com/Gigores/GearshiftScript/releases)
+You can download [the latest release](https://github.com/Gigores/GearshiftScript/releases).
 # Usage
 ```bash
 java -jar gearshiftscript.jar                 # shell
@@ -12,6 +12,7 @@ java -jar gearshiftscript.jar <file>          # file
 java -jar gearshiftscript.jar <file> --debug  # displays an AST and tokens of the file
 ```
 ## Syntax
+You can find an example script [here](https://github.com/Gigores/GearshiftScript/blob/master/src/resources/test.gr).
 ### Variables
 ```
 let a
