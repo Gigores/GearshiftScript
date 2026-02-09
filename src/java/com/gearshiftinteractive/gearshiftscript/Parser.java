@@ -142,7 +142,7 @@ public class Parser {
         } else if (token.type().equals(TokenType.LBRACE)) {
             return handleMapLiteral(0, token);
         }
-        System.out.println(">>>" + token);
+//        System.out.println(">>>" + token);
         if (Arrays.stream(atomicTokenTypes).anyMatch((i) -> i.equals(token.type()))) {  // if its just a literal
             return new ExpressionAtom(token, token.file(), token.lineNumber());
         } else if (token.type() == TokenType.FUNCTION) {

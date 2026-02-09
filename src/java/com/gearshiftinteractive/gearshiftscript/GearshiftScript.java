@@ -19,7 +19,7 @@ public class GearshiftScript {
         var scope = interpreter.getDefaultScope();
         System.out.println("Type quit to quit");
         do {
-            System.out.print(">>> ");
+//            System.out.print(">>> ");
             String line = scanner.nextLine();
             if (line.equals("quit"))
                 break;
