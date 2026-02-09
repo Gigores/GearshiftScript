@@ -11,6 +11,10 @@ java -jar gearshiftscript.jar                 # shell
 java -jar gearshiftscript.jar <file>          # file
 java -jar gearshiftscript.jar <file> --debug  # displays an AST and tokens of the file
 ```
+## Syntax highlighting
+I have made a .vim syntax file for vim [here](https://github.com/Gigores/GearshiftScript/blob/master/gearshift.vim].
+This is how it looks:
+![Syntax highlighting](https://github.com/Gigores/GearshiftScript/blob/master/syntax_preview.png)
 ## Syntax
 You can find an example script [here](https://github.com/Gigores/GearshiftScript/blob/master/src/resources/test.gr).
 ### Variables
@@ -366,6 +370,33 @@ end
 
 let a = new Point(10, 10)
 println(a.x, a.y)
+```
+```
+# Operator overloading
+struct Point is
+    let x
+    let y
+    function __add(other) is
+        new Point(this.x + other.x, this.y + other.y)
+    end
+    function __mul(other) is
+        if typeof(other) == Number then
+            return new Point(this.x * other, this.y * other)
+        else if typeOff(other) == Point then
+           return new Point(this.x * other.x, this.y * other.y)
+        end
+    end
+end
+
+let a = new Point(10, 10)
+let b = new Point(2, 3)
+let res1 = a + b
+let res2 = a * b
+let res3 = a * 5
+println(res1.x, res1.y)  # 12, 13
+println(res2.x, res2.y)  # 20, 30
+println(res3.x, res3.y)  # 50, 50
+# Other available methods: __sub, __div, __pow, __eq, __gt, __ls
 ```
 ### Type Checking
 ```
