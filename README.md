@@ -17,7 +17,7 @@ This is how it looks:
 
 <img src="https://github.com/Gigores/GearshiftScript/blob/master/syntax_preview.png" width="40%" alt="Syntax highlighting">
 
-You can add it to your NeoVim config by adding the [file](https://github.com/Gigores/GearshiftScript/blob/master/gearshift.vim) into nvimConfig/syntax/gearshift.vim and then adding the following snippet to your `init.vim`:
+You can add it to your NeoVim config by adding the [file](https://github.com/Gigores/GearshiftScript/blob/master/gearshift.vim) into nvimConfig/syntax/gearshift.vim and then adding the following snippet to your `init.lua`:
 ```lua
 vim.filetype.add {
     extension = {
