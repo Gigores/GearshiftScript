@@ -12,9 +12,9 @@ java -jar gearshiftscript.jar <file>          # file
 java -jar gearshiftscript.jar <file> --debug  # displays an AST and tokens of the file
 ```
 ## Syntax highlighting
-I have made a .vim syntax file for vim [here](https://github.com/Gigores/GearshiftScript/blob/master/gearshift.vim].
+I have made a .vim syntax file for vim [here](https://github.com/Gigores/GearshiftScript/blob/master/gearshift.vim).
 This is how it looks:
-![Syntax highlighting](https://github.com/Gigores/GearshiftScript/blob/master/syntax_preview.png)
+<img src="https://github.com/Gigores/GearshiftScript/blob/master/syntax_preview.png" width="50%" alt="Syntax highlighting">
 ## Syntax
 You can find an example script [here](https://github.com/Gigores/GearshiftScript/blob/master/src/resources/test.gr).
 ### Variables
