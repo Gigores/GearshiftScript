@@ -27,7 +27,7 @@ vim.filetype.add {
 }
 ```
 ## Syntax
-You can find an example script [here](https://github.com/Gigores/GearshiftScript/blob/master/src/resources/test.gr).
+You can find an example script [here](https://github.com/Gigores/GearshiftScript/blob/master/src/resources/demo.gr).
 ### Variables
 ```
 let a
