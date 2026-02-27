@@ -115,7 +115,7 @@ else
     println("statement3")
 end
 
-# They also work as expressions
+# They also work as expressions (also return the result of the last statement)
 const cond = 12
 const temp = if cond == 0 then
     "0"
@@ -132,7 +132,7 @@ while condition do
     println("statement")
 end
 
-# They also work as expressions
+# They also work as expressions (also return the result of the last statement)
 let count = 3
 let temp = 1
 const res = while true do
@@ -297,6 +297,14 @@ for i in "string" do
 end
 print("\n")
 # string
+
+# They also work as expressions (also return the result of the last statement)
+const count = 3
+let temp = 1
+const res = for _ in count do
+    temp *= 2
+end
+print(temp)  # 8.0
 ```
 Iterators are technically a function, that returns null when there is no more elements to iterate over.
 ```

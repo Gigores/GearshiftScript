@@ -151,6 +151,8 @@ public class Parser {
             return handleIfStatement(token);
         } else if (token.type() == TokenType.WHILE) {
             return handleWhileLoop(token);
+        } else if (token.type() == TokenType.FOR) {
+            return handleForLoop(token);
         } else {  // try to make it into a prefix expression
             var op = token;
             var rightExpr = handleExpression(prefixBindingPowers.get(op.type()));
@@ -360,6 +362,9 @@ public class Parser {
     }
     private Node handleForLoop() {
         var forToken = consume(TokenType.FOR);
+        return handleForLoop(forToken);
+    }
+    private Node handleForLoop(Token forToken) {
         var variable = new ExpressionAtom(consume(TokenType.IDENTIFIER), forToken.file(), forToken.lineNumber());
         consume(TokenType.IN);
         var iterable = handleExpression(0);
