@@ -31,7 +31,7 @@ end
 # ---------- Bank structure ----------
 
 struct Bank is
-    let accounts = {}
+    const accounts = {}
 
     function addAccount(account) is
         this.accounts[account.owner] = account
@@ -62,10 +62,10 @@ end
 
 # ---------- Main program ----------
 
-let bank = new Bank
+const bank = new Bank
 
-let alice = new Account("Alice", 100)
-let bob   = new Account("Bob", 40)
+const alice = new Account("Alice", 100)
+const bob   = new Account("Bob", 40)
 
 bank.addAccount(alice)
 bank.addAccount(bob)
