@@ -147,6 +147,8 @@ public class Parser {
             return new ExpressionAtom(token, token.file(), token.lineNumber());
         } else if (token.type() == TokenType.FUNCTION) {
             return handleFunctionDeclarationExpression(token.file(), token.lineNumber());
+        } else if (token.type() == TokenType.IF) {
+            return handleIfStatement(token);
         } else {  // try to make it into a prefix expression
             var op = token;
             var rightExpr = handleExpression(prefixBindingPowers.get(op.type()));
@@ -246,6 +248,9 @@ public class Parser {
     }
     private Node handleIfStatement() {
         var ifToken = consume(TokenType.IF);
+        return handleIfStatement(ifToken);
+    }
+    private Node handleIfStatement(Token ifToken) {
 
         List<Node> conditions = new ArrayList<>();
         List<CodeBlock> codeBlocks = new ArrayList<>();

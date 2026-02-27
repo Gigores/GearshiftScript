@@ -114,6 +114,17 @@ else if condition2 then
 else
     println("statement3")
 end
+
+# They also work as expressions
+const cond = 12
+const temp = if cond == 0 then
+    "0"
+else if cond == 1 then
+    "1"
+else
+    ">1"
+end
+print(temp)  # ">1"
 ```
 ### While Loops
 ```
