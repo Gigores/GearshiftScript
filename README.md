@@ -7,9 +7,9 @@ This language wasn't made to be a production language.
 You can download [the latest release](https://github.com/Gigores/GearshiftScript/releases).
 # Usage
 ```bash
-java -jar gearshiftscript.jar                 # shell
-java -jar gearshiftscript.jar <file>          # file
-java -jar gearshiftscript.jar <file> --debug  # displays an AST and tokens of the file
+java -jar GearshiftScript.jar                 # shell
+java -jar GearshiftScript.jar <file>          # file
+java -jar GearshiftScript.jar <file> --debug  # displays an AST and tokens of the file
 ```
 ## Syntax highlighting
 I have made a .vim syntax file for vim [here](https://github.com/Gigores/GearshiftScript/blob/master/gearshift.vim).
