@@ -43,6 +43,7 @@ public class Lexer {
     );
     private final static Map<String, TokenType> keywords = Map.ofEntries(
             Map.entry("let", TokenType.LET),
+            Map.entry("const", TokenType.CONST),
             Map.entry("if", TokenType.IF),
             Map.entry("then", TokenType.THEN),
             Map.entry("end", TokenType.END),

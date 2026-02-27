@@ -33,6 +33,10 @@ You can find an example script [here](https://github.com/Gigores/GearshiftScript
 let a
 let b = 10
 b = 15
+
+# constants
+const c = 10
+c = 12  # error
 ```
 ### String manipulations
 ```
@@ -316,8 +320,8 @@ end
 ### Structs
 ```
 struct Vector is
-    let x = 0
-    let y = 0
+    const x = 0
+    const y = 0
 end
 
 let v = new Vector

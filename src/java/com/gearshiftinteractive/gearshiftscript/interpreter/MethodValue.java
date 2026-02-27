@@ -15,7 +15,7 @@ public class MethodValue extends FreeFunctionValue {
     @Override
     protected Scope buildScope(List<GearshiftValue> args) {
         var scope = super.buildScope(args);
-        scope.declare("this", receiver);
+        scope.declare("this", receiver, true);
         return scope;
     }
 }

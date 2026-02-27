@@ -8,7 +8,7 @@ public class ListValue extends GearshiftValue {
 
    public ListValue(LinkedList<GearshiftValue> value) {
        this.value = value;
-       declareField("add", new FunctionValue() {
+       declareConstantField("add", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.add", args, 1, file, line);
@@ -16,7 +16,7 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("addAll", new FunctionValue() {
+       declareConstantField("addAll", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.addAll", args, 1, file, line);
@@ -24,7 +24,7 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("addFirst", new FunctionValue() {
+       declareConstantField("addFirst", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.addFirst", args, 1, file, line);
@@ -32,7 +32,7 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("addFirstAll", new FunctionValue() {
+       declareConstantField("addFirstAll", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.addFirstAll", args, 1, file, line);
@@ -41,14 +41,14 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("__get_index", new FunctionValue() {
+       declareConstantField("__get_index", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.__get_index", args, 1, file, line);
                return value.get((int) ((NumberValue) args.getFirst()).checkDouble());
            }
        });
-       declareField("__assign_index", new FunctionValue() {
+       declareConstantField("__assign_index", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.__assign_index", args, 2, file, line);
@@ -56,7 +56,7 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("contains", new FunctionValue() {
+       declareConstantField("contains", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.contains", args, 1, file, line);
@@ -68,21 +68,21 @@ public class ListValue extends GearshiftValue {
                return new BooleanValue(false);
            }
        });
-       declareField("size", new FunctionValue() {
+       declareConstantField("size", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.size", args, 0, file, line);
                return new NumberValue(value.size());
            }
        });
-       declareField("isEmpty", new FunctionValue() {
+       declareConstantField("isEmpty", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.isEmpty", args, 0, file, line);
                return new BooleanValue(value.isEmpty());
            }
        });
-       declareField("clear", new FunctionValue() {
+       declareConstantField("clear", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.clear", args, 0, file, line);
@@ -90,7 +90,7 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("remove", new FunctionValue() {
+       declareConstantField("remove", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.remove", args, 1, file, line);
@@ -103,28 +103,28 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("removeAt", new FunctionValue() {
+       declareConstantField("removeAt", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.removeAt", args, 1, file, line);
                return value.remove((int) ((NumberValue) args.getFirst()).checkDouble());
            }
        });
-       declareField("removeFirst", new FunctionValue() {
+       declareConstantField("removeFirst", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.removeFirst", args, 0, file, line);
                return value.removeFirst();
            }
        });
-       declareField("removeLast", new FunctionValue() {
+       declareConstantField("removeLast", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.removeLast", args, 0, file, line);
                return value.removeLast();
            }
        });
-       declareField("indexOf", new FunctionValue() {
+       declareConstantField("indexOf", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.indexOf", args, 1, file, line);
@@ -136,7 +136,7 @@ public class ListValue extends GearshiftValue {
                return new NullValue();
            }
        });
-       declareField("__iterator", new FunctionValue() {
+       declareConstantField("__iterator", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.__iterator", args, 0, file, line);
@@ -156,7 +156,7 @@ public class ListValue extends GearshiftValue {
                };
            }
        });
-       declareField("__tostring", new FunctionValue() {
+       declareConstantField("__tostring", new FunctionValue() {
            @Override
            public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                checkArgs("List.__tostring", args, 0, file, line);

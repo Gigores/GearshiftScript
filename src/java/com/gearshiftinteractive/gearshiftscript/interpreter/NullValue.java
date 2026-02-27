@@ -6,7 +6,7 @@ import java.util.List;
 public class NullValue extends GearshiftValue {
 
     public NullValue() {
-        declareField("__tostring", new FunctionValue() {
+        declareConstantField("__tostring", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Null.__tostring", args, 0, file, line);

@@ -200,7 +200,7 @@ public class Interpreter {
         var fieldName = reference.fieldName();
         if (scope.contains(fieldName))
             throw new NameError("Variable \"" + fieldName + "\" already exists", variableDeclaration.file(), variableDeclaration.line());
-        scope.declare(fieldName, assign.getValue());
+        scope.declare(fieldName, assign.getValue(), variableDeclaration.isConstant());
         return new Normal(new NullValue());
     }
     private Normal evalFunctionCall(FunctionCall functionCall, Scope scope) {
@@ -301,7 +301,7 @@ public class Interpreter {
 //        };
         var theFunction = new FreeFunctionValue(functionDeclaration, scope, this);
         if (functionDeclaration.name() != null) {
-            scope.declare(theFunction.fieldName, theFunction);
+            scope.declare(theFunction.fieldName, theFunction, true);
         }
         return new Normal(theFunction);
     }
@@ -324,7 +324,7 @@ public class Interpreter {
             var iteratorResult = iterator.call(List.of(), forLoop.file(), forLoop.line());
             if (iteratorResult instanceof NullValue) break;
             var currentScope = new Scope(scope);
-            currentScope.declare(((ExpressionAtom) forLoop.variable()).identifier().content(), iteratorResult);
+            currentScope.declare(((ExpressionAtom) forLoop.variable()).identifier().content(), iteratorResult ,true);
             var res = evalCodeBlock((CodeBlock) forLoop.body(), currentScope);
             if (res instanceof Break) break;
             else if (res instanceof Return) return res;
@@ -372,7 +372,7 @@ public class Interpreter {
                 (CodeBlock) structDeclaration.body(),
                 this
         );
-        scope.declare(evalIdentifier(structDeclaration.name()), ret);
+        scope.declare(evalIdentifier(structDeclaration.name()), ret, true);
         return new Normal(new NullValue());
     }
     private ExecResult eval(Node node, Scope scope) {
@@ -422,7 +422,7 @@ public class Interpreter {
                 }
                 return new NullValue();
             }
-        });
+        }, true);
         scope.declare("println", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
@@ -437,7 +437,7 @@ public class Interpreter {
                 }
                 return new NullValue();
             }
-        });
+        }, true);
         scope.declare("Number", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
@@ -450,14 +450,14 @@ public class Interpreter {
                     default -> throw new TypeError("Can't cast " + args.getFirst().getTypeName() + " to Number", file, line);
                 });
             }
-        });
+        }, true);
         scope.declare("String", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("String", args, 1, file, line);
                 return args.getFirst().toStringValue(file, line);
             }
-        });
+        }, true);
         scope.declare("Boolean", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
@@ -470,7 +470,7 @@ public class Interpreter {
                     default -> throw new TypeError("Can't cast " + args.getFirst().getTypeName() + " to Boolean", file, line);
                 });
             }
-        });
+        }, true);
         scope.declare("ensureType", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
@@ -484,21 +484,21 @@ public class Interpreter {
                     throw new TypeError(message, file, line);
                 return null;
             }
-        });
+        }, true);
         scope.declare("typeOf", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("typeOf", args, 1, file, line);
                 return new StringValue(args.getFirst().getTypeName());
             }
-        });
+        }, true);
         scope.declare("input", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("input", args, 0, file, line);
                 return new StringValue(scanner.nextLine());
             }
-        });
+        }, true);
         return scope;
     }
 }

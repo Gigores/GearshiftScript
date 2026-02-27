@@ -11,7 +11,7 @@ public class MapValue extends GearshiftValue {
         declareFields();
     }
     private void declareFields() {
-        declareField("keyList", new FunctionValue() {
+        declareConstantField("keyList", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Map.keyList", args, 0, file, line);
@@ -22,7 +22,7 @@ public class MapValue extends GearshiftValue {
                 return new ListValue(ret);
             }
         });
-        declareField("merge", new FunctionValue() {
+        declareConstantField("merge", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Map.merge", args, 1, file, line);
@@ -30,7 +30,7 @@ public class MapValue extends GearshiftValue {
                 return new NullValue();
             }
         });
-        declareField("__get_index", new FunctionValue() {
+        declareConstantField("__get_index", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Map.__get_index", args, 1, file, line);
@@ -41,7 +41,7 @@ public class MapValue extends GearshiftValue {
                 return new NullValue();
             }
         });
-        declareField("__assign_index", new FunctionValue() {
+        declareConstantField("__assign_index", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Map.__assign_index", args, 2, file, line);
@@ -62,7 +62,7 @@ public class MapValue extends GearshiftValue {
                 return new NullValue();
             }
         });
-        declareField("__tostring", new FunctionValue() {
+        declareConstantField("__tostring", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Map.__tostring", args, 0, file, line);

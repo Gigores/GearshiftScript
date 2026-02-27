@@ -32,9 +32,9 @@ public class FreeFunctionValue extends FunctionValue {
         for (var i = 0; i < functionDeclaration.parameters().size(); i++) {
             var fieldName = ((ScopeReference) interpreter.evalReference(functionDeclaration.parameters().sequencedKeySet().toArray(Node[]::new)[i], innerScope)).fieldName();
             if (args.size() > i)
-                innerScope.declare(fieldName, args.get(i));
+                innerScope.declare(fieldName, args.get(i), true);
             else
-                innerScope.declare(fieldName, interpreter.evalValue(functionDeclaration.parameters().sequencedValues().toArray(Node[]::new)[i], innerScope));
+                innerScope.declare(fieldName, interpreter.evalValue(functionDeclaration.parameters().sequencedValues().toArray(Node[]::new)[i], innerScope), true);
         }
         return innerScope;
     }

@@ -21,21 +21,25 @@ public class ObjectValue extends GearshiftValue {
     }
     public void declareFields(Scope scope, Interpreter interpreter) {
         var targetFields = new HashMap<String, GearshiftValue>();
+        var targetConstants = new HashMap<String, GearshiftValue>();
         var innerScope = new Scope(scope);
         for (var statement : classValue.body.statements()) {
             if (statement instanceof VariableDeclaration) {
                 var expr = ((VariableDeclaration) statement).expr();
                 var res = interpreter.evalAssignment(expr, innerScope);
-                targetFields.put(((ScopeReference) res.getKey()).fieldName(), res.getValue());
+                if (((VariableDeclaration) statement).isConstant())
+                    targetConstants.put(((ScopeReference) res.getKey()).fieldName(), res.getValue());
+                else
+                    targetFields.put(((ScopeReference) res.getKey()).fieldName(), res.getValue());
             } else if (statement instanceof FunctionDeclaration) {
-                targetFields.put(((ScopeReference) interpreter.evalReference(((FunctionDeclaration) statement).name(), scope)).fieldName(), new MethodValue(this, (FunctionDeclaration) statement, innerScope, interpreter));
+                targetConstants.put(((ScopeReference) interpreter.evalReference(((FunctionDeclaration) statement).name(), scope)).fieldName(), new MethodValue(this, (FunctionDeclaration) statement, innerScope, interpreter));
             } else if (statement instanceof PrefixOperatorExpression && ((PrefixOperatorExpression) statement).operator().type() == TokenType.STATIC) {
                 // thats fine
             } else {
                 throw new SyntaxError("You can't use " + statement.getType() + " inside struct declaration body", statement.file(), statement.line());
             }
         }
-        declareField("getClass", new FunctionValue() {
+        declareConstantField("getClass", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 return classValue;
@@ -43,6 +47,9 @@ public class ObjectValue extends GearshiftValue {
         });
         for (var fieldName : targetFields.keySet()) {
             declareField(fieldName, targetFields.get(fieldName));
+        }
+        for (var fieldName : targetConstants.keySet()) {
+            declareConstantField(fieldName, targetConstants.get(fieldName));
         }
     }
     @Override

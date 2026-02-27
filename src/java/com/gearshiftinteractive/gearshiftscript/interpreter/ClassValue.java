@@ -23,13 +23,13 @@ public class ClassValue extends GearshiftValue {
         declareFields();
     }
     private void declareFields() {
-        declareField("getName", new FunctionValue() {
+        declareConstantField("getName", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 return new StringValue(name);
             }
         });
-        declareField("__eq", new FunctionValue() {
+        declareConstantField("__eq", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Class.__eq", args, 1, file, line);
@@ -42,7 +42,7 @@ public class ClassValue extends GearshiftValue {
             } else if (statement instanceof FunctionDeclaration) {
                 // ok
             } else if (statement instanceof PrefixOperatorExpression && ((PrefixOperatorExpression) statement).operator().type() == TokenType.STATIC) {
-                declareField(((ScopeReference) interpreter.evalReference(((FunctionDeclaration) ((PrefixOperatorExpression) statement).operand()).name(), declarationScope)).fieldName(), new FreeFunctionValue((FunctionDeclaration) ((PrefixOperatorExpression) statement).operand(), declarationScope, interpreter));
+                declareConstantField(((ScopeReference) interpreter.evalReference(((FunctionDeclaration) ((PrefixOperatorExpression) statement).operand()).name(), declarationScope)).fieldName(), new FreeFunctionValue((FunctionDeclaration) ((PrefixOperatorExpression) statement).operand(), declarationScope, interpreter));
             } else {
                 throw new SyntaxError("You can't use " + statement.getType() + " inside struct declaration body", statement.file(), statement.line());
             }
@@ -86,8 +86,8 @@ public class ClassValue extends GearshiftValue {
 //        };
 //        result.declareFields();
 //        return result;
-        var objectScope = interpreter.getDefaultScope();
-        objectScope.declare(name, this);
+//        var objectScope = interpreter.getDefaultScope();
+//        objectScope.declare(name, this, false);
         return new ObjectValue(name, this, declarationScope, interpreter);
     }
 

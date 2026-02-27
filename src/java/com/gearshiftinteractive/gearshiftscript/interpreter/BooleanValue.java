@@ -7,7 +7,7 @@ public class BooleanValue extends GearshiftValue {
 
     public BooleanValue(boolean value) {
         this.value = value;
-        declareField("__tostring", new FunctionValue() {
+        declareConstantField("__tostring", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Boolean.__tostring", args, 0, file, line);

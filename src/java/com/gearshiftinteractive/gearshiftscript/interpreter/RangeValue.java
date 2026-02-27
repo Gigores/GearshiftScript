@@ -13,7 +13,7 @@ public class RangeValue extends GearshiftValue {
         declareFields();
     }
     private void declareFields() {
-        declareField("__iterator", new FunctionValue() {
+        declareConstantField("__iterator", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Range.__iterator", args, 0, file, line);
@@ -31,7 +31,7 @@ public class RangeValue extends GearshiftValue {
                 };
             }
         });
-        declareField("__tostring", new FunctionValue() {
+        declareConstantField("__tostring", new FunctionValue() {
             @Override
             public GearshiftValue call(List<GearshiftValue> args, String file, int line) {
                 checkArgs("Range.__tostring", args, 0, file, line);

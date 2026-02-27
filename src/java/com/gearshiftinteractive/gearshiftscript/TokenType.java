@@ -53,6 +53,7 @@ public enum TokenType {
 
     // keywords
     LET("let"),
+    CONST("const"),
     END("end"),
     IF("if"),
     THEN("then"),

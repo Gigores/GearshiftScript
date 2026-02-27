@@ -241,8 +241,8 @@ public class Parser {
         return new ListLiteral(elements, lbracket.file(), lbracket.lineNumber());
     }
     private Node handleVariableDeclaration() {
-        var let = consume(TokenType.LET);
-        return new VariableDeclaration(handleExpression(0), let.file(), let.lineNumber());
+        var let = consume(new TokenType[]{TokenType.LET, TokenType.CONST});
+        return new VariableDeclaration(handleExpression(0), let.type() == TokenType.CONST, let.file(), let.lineNumber());
     }
     private Node handleIfStatement() {
         var ifToken = consume(TokenType.IF);
@@ -370,7 +370,7 @@ public class Parser {
     }
     private Node handleStatement() {
         return switch (peek().type()) {
-            case LET -> handleVariableDeclaration();
+            case LET, CONST -> handleVariableDeclaration();
             case IF -> handleIfStatement();
             case WHILE -> handleWhileLoop();
             case CONTINUE ->  {
