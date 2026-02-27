@@ -101,6 +101,14 @@ println(null)
 # Returns a string
 let a = input()
 ```
+### `do` Block
+```
+const res = do
+    const inp = input()  # hello
+    return inp + "!"
+end
+println(res)  # hello!
+```
 ### If Statements
 ```
 if condition then

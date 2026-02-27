@@ -153,6 +153,10 @@ public class Parser {
             return handleWhileLoop(token);
         } else if (token.type() == TokenType.FOR) {
             return handleForLoop(token);
+        } else if (token.type() == TokenType.DO) {
+            var cb = handleCodeBlock(token.file(), token.lineNumber());
+            consume(TokenType.END);
+            return cb;
         } else {  // try to make it into a prefix expression
             var op = token;
             var rightExpr = handleExpression(prefixBindingPowers.get(op.type()));

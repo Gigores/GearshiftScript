@@ -229,9 +229,12 @@ public class Interpreter {
     }
     public ExecResult evalCodeBlock(CodeBlock codeBlock, Scope scope) {
         GearshiftValue lastValue = new NullValue();
+        var innerScope = new Scope(scope);
         for (var statement : codeBlock.statements()) {
-            var res = eval(statement, scope);
-            if (!(res instanceof Normal))
+            var res = eval(statement, innerScope);
+            if (res instanceof Return)
+                return new Normal(((Return) res).value());
+            else if (!(res instanceof Normal))
                 return res;
             else
                 lastValue = ((Normal) res).value();
