@@ -18,7 +18,7 @@ struct Account is
     end
 
     function withdraw(amount) is
-        return if amount > this.balance then
+        if amount > this.balance then
             println("Not enough funds for", this.owner)
             false
         else
