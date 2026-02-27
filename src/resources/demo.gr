@@ -5,7 +5,7 @@
 # ---------- Account structure ----------
 
 struct Account is
-    let owner
+    const owner
     let balance = 0
 
     function __init(owner, initial=0) is

@@ -15,8 +15,8 @@ public abstract class GearshiftValue {
     }
     public void assignField(String name, GearshiftValue value, String file, int line) {
         if (!fields.containsKey(name)) throw new FieldAccessError(name, getTypeName(), file, line);
-        if (fields.get(name).isConstant()) throw new ConstantFieldError(getTypeName() + "." + name, file, line);
-        fields.put(name, new FieldValue(value, false));
+        if (fields.get(name).isConstant() && !(fields.get(name).value() instanceof NullValue)) throw new ConstantFieldError(getTypeName() + "." + name, file, line);
+        fields.put(name, new FieldValue(value, fields.get(name).isConstant()));
     }
     public boolean hasField(String name) {
         return fields.containsKey(name);

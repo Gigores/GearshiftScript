@@ -25,9 +25,9 @@ public class Scope {
     }
     public void assign(String name, GearshiftValue value, String file, int line) {
         if (values.containsKey(name)) {
-            if (values.get(name).isConstant())
+            if (values.get(name).isConstant() && !(values.get(name).value() instanceof NullValue))
                 throw new ConstantFieldError(name, file, line);
-            values.put(name, new ScopeValue(value, false));
+            values.put(name, new ScopeValue(value, values.get(name).isConstant()));
         } else if (parent != null) {
             parent.assign(name, value, file, line);
         } else {
