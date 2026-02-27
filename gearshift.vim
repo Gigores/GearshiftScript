@@ -4,7 +4,7 @@ endif
 
 syntax case match
 
-syn keyword gearKeyword     function let end if then else while for in do return struct is static new
+syn keyword gearKeyword     function let const end if then else while for in do return struct is static new
 syn keyword gearConditional if else
 syn keyword gearRepeat      for while
 syn keyword gearOperator    and or not step
