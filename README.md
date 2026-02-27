@@ -124,13 +124,25 @@ else if cond == 1 then
 else
     ">1"
 end
-print(temp)  # ">1"
+print(temp)  # >1
 ```
 ### While Loops
 ```
 while condition do
     println("statement")
 end
+
+# They also work as expressions
+let count = 3
+let temp = 1
+const res = while true do
+    temp *= 2
+    count--
+    if count <= 0 then
+        break temp
+    end
+end
+print(temp)  # 8.0
 ```
 ### Functions
 ```

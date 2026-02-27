@@ -149,6 +149,8 @@ public class Parser {
             return handleFunctionDeclarationExpression(token.file(), token.lineNumber());
         } else if (token.type() == TokenType.IF) {
             return handleIfStatement(token);
+        } else if (token.type() == TokenType.WHILE) {
+            return handleWhileLoop(token);
         } else {  // try to make it into a prefix expression
             var op = token;
             var rightExpr = handleExpression(prefixBindingPowers.get(op.type()));
@@ -309,6 +311,9 @@ public class Parser {
     }
     private Node handleWhileLoop() {
         var whileToken = consume(TokenType.WHILE);
+        return handleWhileLoop(whileToken);
+    }
+    private Node handleWhileLoop(Token whileToken) {
         var expr = handleExpression(0);
         consume(TokenType.DO);
         skipEndOfStatementTokens();
