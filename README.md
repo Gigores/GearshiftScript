@@ -1,4 +1,4 @@
-GearshiftScript is a small dynamically but strictly typed multi-paradigm beginner-friendly toy programming language.
+GearshiftScript is a small dynamically but strictly typed multi-paradigm beginner-friendly embeddable toy programming language.
 This language's syntax was designed to be readable almost like natural english and understandable for beginners, while still being flexible enough for more advanced programmers.
 This language supports several OOP (Composition, basic Encapsulation, constructors) and functional (First-class functions, Closures, Iterators, Expression-oriented style, Default arguments, Higher-order functions) and mixed programming patterns.
 
